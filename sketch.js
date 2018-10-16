@@ -23,11 +23,13 @@ function draw() {
   basketBall.move();
   basketBall.display();
   noStroke();
-  fill(255,0,0,0);
+  fill(255,0,0);
   rect(590, 254, 10, 100);//canestro
-  rect(725,130,40,150);//tabellone
+  rect(725,130,40,120);//tabellone
   rect(1220,600,100,700);//verticale
   rect(990,230,570,60);//orizzontale
+  rect(650,260,120,100);//punto
+
     ellipse(mouseX,mouseY,30);
 
 }
@@ -59,7 +61,7 @@ function Ball(_x, _y, _diameter) {
   if (this.y > 254-150 && this.y < 254+150 && this.x > 585 && this.x < 595 ) {//canestro
       xDir = xDir * (-0.2);
   }
-  if (this.y > 130-75 && this.y < 130+75 && this.x > 705 && this.x < 745 ) {//tabellone
+  if (this.y > 130-60 && this.y < 130+60 && this.x > 725-20 && this.x < 725+20 ) {//tabellone
           xDir = xDir * (-0.2);
   }
   if (this.y > 600-350 && this.y < 600+350 && this.x > 1220-50 && this.x <1220+50) {//verticale
@@ -69,9 +71,13 @@ function Ball(_x, _y, _diameter) {
         yDir = yDir * (-1);
   }
   if (this.y > mouseY-40 && this.y < mouseY+40 && this.x >mouseX-40 && this.x <mouseX+40) {//orizzontale
-      this.speed=this.speed*(-1);
+    this.speed= this.speed*(-1);
 
   }
+  if (this.y > 210 && this.y < 310 && this.x >650-60 && this.x <650+60) {//orizzontale
 
+    text('You Score',width/2,height/2);
+      text('Refresh the page to play again',width/2,height/2+50);
+}
 }
 }
