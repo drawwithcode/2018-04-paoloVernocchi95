@@ -48,6 +48,7 @@ function Ball(_x, _y, _diameter) {
     if (this.x >img.width * 1.6 || this.x <0) {
     xDir = xDir * (-1);
   }
-   if (this.y > 214 && this.y < 294 && this.x > 585 && this.x < 595 ) {
+  if (this.y > 214 && this.y < 294 && this.x > 585 && this.x < 595 ) {
         this.speed = this.speed * (-1);
   }
+}
