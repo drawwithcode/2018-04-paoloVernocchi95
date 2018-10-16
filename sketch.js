@@ -1,5 +1,6 @@
 var img;
 var a = 0;
+var r = 20;
 
 function preload() {
   img = loadImage('immaginibasket/original2.jpg');
@@ -15,8 +16,8 @@ function setup() {
   basketBall = new Ball(300, 300, 40);
   rectMode(CENTER);
   cursor(HAND);
-  //song.play();
-  //song.loop()
+  song.play();
+  song.loop()
 
 
   // put setup code here
@@ -26,18 +27,30 @@ function setup() {
 function draw() {
 
   image(img, width / 2, height / 2, img.width * 1.6, img.height * 1.6);
+  textFont(myFont);
+  textSize(67);
+  fill(275);
+  text('NB Atom', width -300 ,100);
   basketBall.move();
   basketBall.display();
   noStroke();
-  fill(255, 0, 0);
-  rect(590, 254, 10, 100); //canestro
-  rect(725, 130, 40, 120); //tabellone
+  fill(255, 0, 0,0);
+  rect(585, 254, 40, 100); //canestro
+  rect(720, 180, 60, 260); //tabellone
+  //rect(650, 285, 120, 40); //sotto canestro
   rect(1220, 600, 100, 700); //verticale
   rect(990, 230, 570, 60); //orizzontale
-  rect(650, 260, 100, 100); //punto
-  rect(700, 280, 40, 70); //sottocanestro dx
-  rect(600, 300, 50, 20); //sottocanestro sx
-  rect(600, 200, 50, 20); //sopracanestro sx
+  if (this.y > 210 && this.y < 310 && this.x > 650 - 60 && this.x < 650 + 60){
+    textSize(70);
+    fill(275);
+    text('Refresh to play again', width/2 ,height+300);
+  }
+
+  //rect(650, 260, 100, 100); //punto
+  //rect(700, 280, 20, 70); //sottocanestro dx
+  //rect(600, 300, 50, 20); //sottocanestro sx
+
+
 
 
   rect(mouseX, mouseY, 100, 30);
@@ -73,38 +86,38 @@ function Ball(_x, _y, _diameter) {
     if (this.x > img.width * 1.6 || this.x < 0) {
       xDir = xDir * (-1);
     }
-    if (this.y > 254 - 150 && this.y < 254 + 150 && this.x > 585 && this.x < 595) { //canestro
-      xDir = xDir * (-0.2);
+    if (this.y > 254 - 70 && this.y < 254 + 70 && this.x > 585-20-r && this.x < 585+20+r) { //canestro
+      xDir = xDir * (-0.4);
     }
-    if (this.y > 130 - 60 && this.y < 130 + 60 && this.x > 725 - 20 && this.x < 725 + 20) { //tabellone
-      xDir = xDir * (-0.2);
+    if (this.y > 180 - 130-r && this.y < 180 + 130+r && this.x > 720 - 30-r && this.x < 720 + 30+r) { //tabellone
+      xDir = xDir * (-0.5);
     }
-    if (this.y > 600 - 350 && this.y < 600 + 350 && this.x > 1220 - 50 && this.x < 1220 + 50) { //verticale
+    if (this.y > 600 - 350-r && this.y < 600 + 350+r && this.x > 1220 - 50-r && this.x < 1220 + 50+r) { //verticale
       xDir = xDir * (-1);
     }
-    if (this.y > 230 - 30 && this.y < 230 + 30 && this.x > 990 - 285 && this.x < 990 + 285) { //orizzontale
+    if (this.y > 230 - 30-r && this.y < 230 + 30+r && this.x > 990 - 285-r && this.x < 990 + 285+r) { //orizzontale
       yDir = yDir * (-1);
     }
+    /*if (this.y > 285 - 20-r && this.y < 285 + 20+r && this.x > 650 - 60-r && this.x < 650 + 60+r) { //sottocanestro
+      yDir = yDir * (-0.6);
+    }
 
-    if (this.y > 280 - 35 && this.y < 280 + 35 && this.x > 700 - 35 && this.x < 700 + 35) { //sotto canestro dx
+    /*if (this.y > 280 - 35 && this.y < 280 + 35 && this.x > 700 - 35 && this.x < 700 + 35) { //sotto canestro dx
       yDir = yDir * (-1);
       xDir = xDir * (-1);
     }
     if (this.y > 300 - 10 && this.y < 300 + 10 && this.x > 600 - 25 && this.x < 600 + 25) { //sotto canestro sx
       yDir = yDir * (-1);
       xDir = xDir * (-1);
-    }
-    if (this.y > 200 - 10 && this.y < 200 + 10 && this.x > 600 - 25 && this.x < 600 + 25) { //spra canestro
-      this.x += -3;
-      this.y += 3;
-    }
+    }*/
+
     if (this.y > 210 && this.y < 310 && this.x > 650 - 60 && this.x < 650 + 60) { //orizzontale
       fill(275);
       textFont(myFont);
       textSize(36);
       text('You Score', width / 2, height / 2);
       a += 2;
-      text('TOTAL SCORE --> ' + a, 500, 500);
+      text('TOTAL SCORE  ' + a, 500, 500);
     }
     if (this.y > mouseY - 50 && this.y < mouseY -25 && this.x > mouseX - 50 && this.x < mouseX + 50) { //cursore
       yDir = -2;
@@ -124,8 +137,9 @@ function Ball(_x, _y, _diameter) {
     }
      if (this.y > mouseY+25  && this.y < mouseY+50  && this.x > mouseX - 50 && this.x < mouseX + 50) {
       yDir = 2;
-    
+
     //   xDir = 2;
     }
+
   }
 }
