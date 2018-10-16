@@ -64,7 +64,7 @@ function Ball(_x, _y, _diameter) {
   this.color = (3, 4, 5); //(random(0,275),random(0,275),random(0,275));
   this.speed = 3;
   var yDir = 2;
-  var xDir = 2;
+  var xDir = 1;
 
 
 
@@ -116,7 +116,7 @@ function Ball(_x, _y, _diameter) {
       textFont(myFont);
       textSize(36);
       text('You Score', width / 2, height / 2);
-      a += 2;
+      a += 1;
       text('TOTAL SCORE  ' + a, 500, 500);
     }
     if (this.y > mouseY - 50 && this.y < mouseY -25 && this.x > mouseX - 50 && this.x < mouseX + 50) { //cursore
